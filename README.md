@@ -109,5 +109,48 @@ C:\Users\JoppeBlondel>usbipd wsl attach -b 6-4 -d Ubuntu
 ```
 (note: one may omit the `-d Ubuntu` if the specified distro is the default one)
 
+#### USB permissions in WSL2
+By default USB devices do not have user permissions and may only be used by root
+(thus by using `sudo`). In general this is not a problem bus since the IDE's are
+generally not run as administrator it is necessary to change the permissions of
+the USB device.
+
+Most modern desktop linux distributions use udev for device management and it
+has an easy way to automatically change properties of devices when plugged in.
+Make sure udev is running by exuting in the wsl terminal (can be accessed by 
+executing `wsl` in the windows command promt):
+```bash
+joppe@Probook-i7:~$ service udev status
+● systemd-udevd.service - Rule-based Manager for Device Events and Files
+     Loaded: loaded (/lib/systemd/system/systemd-udevd.service; static)
+     Active: active (running) since Fri 2023-11-03 11:05:38 CET; 11s ago
+TriggeredBy: ● systemd-udevd-kernel.socket
+             ● systemd-udevd-control.socket
+       Docs: man:systemd-udevd.service(8)
+....
+```
+If it gives an output like this or doesn't show something like 'not running' or
+'stopped' somewhere udev is running correctly. When it is not started it must be
+enabled. Normally one can directly use `service` or `systemctl` but in wsl one
+can enable a service [this way](https://superuser.com/questions/1701853/how-to-enable-a-service-to-start-with-wsl2).
+
+With udev enabled a rules file must be created. Lets create a file in 
+`/etc/udev/rules.d` called 99-usbrules.rules
+```bash
+joppe@Probook-i7:~$ sudo nano /etc/udev/rules.d/99-usbrules.rules
+[sudo] password for joppe:
+....
+```
+and add to it
+```
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666",
+```
+where idVendor and idProduct are the VID:PID numbers which can be found in the
+output of `uspipd wsl list`.
+
+Restart the wsl distro by exiting the linux terminal and from a windows command
+prompt execute `wsl --shutdown`. Starting the distro can be done by a simple
+`wsl`.
+
 ### Linux
 TODO
