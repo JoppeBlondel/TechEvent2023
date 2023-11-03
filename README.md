@@ -84,5 +84,30 @@ enabled under `Resources->WSL integration` (and don't forget to click on
 `Apply & restart`)
 ![](img/docker_ubuntu_enable.png)
 
+#### USB passthrough from windows to WSL2
+The distro's in WSL2 are running in their own sandbox and cannot touch the USB
+devices directly. Fortunately there is USB-IP which shares USB devices over IP.
+Microsoft themselves has a good 
+[tutorial](https://learn.microsoft.com/en-us/windows/wsl/connect-usb) on how to
+install and use it. After installation the sharing will work as follow (from the
+windows command promt in *administrator mode*):
+```batch
+C:\Users\JoppeBlondel>usbipd wsl list
+BUSID  VID:PID    DEVICE                                                        STATE
+2-1    047f:c056  Plantronics Blackwire 3220 Series, USB Input Device           Not attached
+2-2    04f2:b6bf  HP HD Camera, HP IR Camera                                    Not attached
+2-7    04f3:0c5e  ELAN WBF Fingerprint Sensor                                   Not attached
+2-10   8087:0026  Intel(R) Wireless Bluetooth(R)                                Not attached
+3-2    17e9:6015  ThinkPad Hybrid USB-C with USB-A Dock, Lenovo USB Audio       Not attached
+3-3    17ef:a359  Lenovo USB Ethernet                                           Not attached
+6-1    046d:c093  Logitech USB Input Device, USB Input Device                   Not attached
+6-3    045e:082c  USB Input Device                                              Not attached
+6-4    0483:3748  STM32 STLink                                                  Not attached
+7-1    17ef:a354  Billboard Device, USB Input Device                            Not attached
+
+C:\Users\JoppeBlondel>usbipd wsl attach -b 6-4 -d Ubuntu
+```
+(note: one may omit the `-d Ubuntu` if the specified distro is the default one)
+
 ### Linux
 TODO
