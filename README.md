@@ -143,7 +143,7 @@ joppe@Probook-i7:~$ sudo nano /etc/udev/rules.d/99-usbrules.rules
 ```
 and add to it
 ```
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666",
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666"
 ```
 where idVendor and idProduct are the VID:PID numbers which can be found in the
 output of `uspipd wsl list`.
