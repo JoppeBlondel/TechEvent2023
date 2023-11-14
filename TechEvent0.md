@@ -35,10 +35,12 @@ style: |
 #### Down the rabbit hole to never come back
 
 ---
-# TODO Layout
-
----
-# TODO So... what's the problem?
+# What's the problem?
+* All dev's need to install the tools
+    * CubeIDE, MCUXpresso, MPLab, E2studio, SEGGER embedded...
+    * arm-gcc v8/v9/v10, xc16...
+    * other GNU tools: make, binutils, libraries, libc...
+* 10 versions of gcc and Eclipse installed
 
 ---
 # Can we solve it?
