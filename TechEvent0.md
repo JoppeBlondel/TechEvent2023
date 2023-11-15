@@ -40,7 +40,8 @@ style: |
     * CubeIDE, MCUXpresso, MPLab, E2studio, SEGGER embedded...
     * arm-gcc v8/v9/v10, xc16...
     * other GNU tools: make, binutils, libraries, libc...
-* 10 versions of gcc and Eclipse installed
+* 10 versions of gcc, Eclipse and other things installed
+* Every time a new IDE to learn and customize
 
 ---
 # Can we solve it?
@@ -49,24 +50,25 @@ style: |
 * Remote development (e.g. over ssh)
     <!-- That works well for things like web development but with embedded real-time 
     debugging becomes harder -->
-* Combine all tools, libraries and the lot
+* Combine all tools, libraries and the lot in one package
     * VM
         <!-- Quite the resource hog -->
     * Snap/Flatpack/AppImage
         <!-- snap: ubuntu only -->
         <!-- AppImage: lack of udates -->
-        <!-- All on linux only -->
+        <!-- All on linux only and more for 1 application -->
     * (Docker) container
         <!-- Lightweight like above and has native windows (with wsl) support, but best with: -->
     * Devcontainer with IDE supporting them
 
 ---
 # So... devcontainers... what are they?
-[containers.dev](https://containers.dev/): *A development container (or dev container for short) allows you to use a **container** as a full-featured development environment. It can be used to run an application, to separate tools, libraries, or runtimes needed for working with a codebase, and to aid in **continuous integration and testing**. Dev containers can be run **locally or remotely, in a private or public cloud**, in a variety of supporting tools and editors.*
+[containers.dev](https://containers.dev/): *A development container (or dev container for short) allows you to use a **container** as a full-featured development environment. It can be used to run an application, to separate tools, libraries, or runtimes needed for working with a codebase, and to aid in continuous integration and testing. ...*
 
 ---
 # Down the rabbit hole: containers
 *... you to use a **container** as a full-featured ...*
+* Sandbox environment
 * Like a VM: full OS
 * Lightweight: uses kernel of the host
 * Declarative: Infrastructure as Code
@@ -130,6 +132,15 @@ CMD /bin/bash
     ```
 
 ---
+# Containers and Docker
+![bg center 55%](https://logos-world.net/wp-content/uploads/2021/02/Docker-Symbol.png)
+<!-- Docker released and published in 2013 -->
+<!-- 2015 startd the OCI (open container initiative): not just docker anymore: podman/containerd/lxd -->
+
+---
+![bg center 80%](img/dev_in_docker.png)
+
+---
 # Devcontainers: containers with spice
 ![bg center 60%](https://containers.dev/img/dev-container-stages.png)
 
@@ -138,6 +149,10 @@ CMD /bin/bash
 * Full development environment
 * Utilities and personalization
 * Configuration of IDE
+
+---
+# Devcontainers and VSCode
+![bg center 60%](img/sch_devcontainer_vscode.png)
 
 ---
 # Devcontainers: an example
@@ -157,15 +172,11 @@ CMD /bin/bash
 ```
 
 ---
-# Devcontainers and VSCode
-![bg center 60%](img/sch_devcontainer_vscode.png)
-
----
-![bg center 100%](img/vscode_devcontainer.png)
+![bg center 80%](img/dev_in_devconatiner.png)
 
 ---
 # Devcontainers and VSCode
-* Functions as local instance
+* Seamless: functions as local instance
 * Executes build tools, debugger and other tools from container
 * VSCode Configuration and plugins declared in the json file
 
@@ -195,6 +206,9 @@ Docker is in it's core a linux tool
 * USB to WSL: USBIP
     * see readme
 ![bg right 90%](img/sch_docker_on_windows.png)
+
+---
+![bg center 80%](img/vscode_usbipd.png)
 
 ---
 # All together
