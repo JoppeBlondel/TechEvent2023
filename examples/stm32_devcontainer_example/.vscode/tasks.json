@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            }
+        },
+        {
+            "label": "flash",
+            "type": "shell",
+            "command": "bash flash.sh",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            }
+        }
+    ]
+}
