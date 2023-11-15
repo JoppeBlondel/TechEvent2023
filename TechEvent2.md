@@ -2,7 +2,7 @@
 marp: true
 author: Joppe Blondel
 paginate: true
-title: TechEvent1
+title: TechEvent2
 size: 16:9
 footer: Engineero Embedded Tech Event 2023 - Try-out STM32 decvontainer
 theme: gaia
