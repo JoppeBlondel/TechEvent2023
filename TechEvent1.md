@@ -4,7 +4,7 @@ author: Joppe Blondel
 paginate: true
 title: TechEvent1
 size: 16:9
-footer: Engineero Embedded Tech Event 2023 - Hands on exercise
+footer: Engineero Embedded Tech Event 2023 - How-to and some notes
 theme: gaia
 style: |
   :root {
@@ -32,6 +32,140 @@ style: |
 
 <!-- _class: lead -->
 # Devcontainers and Embedded software development
-#### A hands on experience
+#### How-to and some notes
 
 ---
+# What's the goal?
+* VSCode
+* Simple hello-world application in C
+* Easy building from IDE
+* Integrated debugging of application
+* Running in devcontainer
+
+---
+![bg center 80%](img/dev_in_devconatiner.png)
+
+---
+![bg center 80%](img/vscode_debug.png)
+
+---
+# What do we need
+* Definition of Docker container
+* Definition of the devcontainer
+* Simple buildsystem
+* VSCode configuration for building and debugging
+
+---
+### A small note
+![bg right 80%](img/sch_docker_on_windows.png)
+* Containers run on WSL
+* Files on Windows must be shared to WSL: slow...
+* Fix: Work from WSL
+
+---
+## Work from WSL: Create project location
+![bg center 50%](img/work_from_wsl0.png)
+
+---
+## Work from WSL: Create project location
+![bg center 50%](img/work_from_wsl1.png)
+
+---
+## Work from WSL: Create project location
+![bg center 50%](img/work_from_wsl2.png)
+
+---
+## Work from WSL: Create project location
+![bg center 50%](img/work_from_wsl3.png)
+
+---
+## Work from WSL: Create project location
+![bg center 50%](img/work_from_wsl4.png)
+
+---
+## Work from WSL: Create project location
+Or clone a repo in WSL
+```bash
+AzureAD+JoppeBlondel@Probook-i7 UCRT64 ~
+$ wsl
+joppe@Probook-i7:/mnt/c/msys64/home/JoppeBlondel$ cd
+joppe@Probook-i7:~$ git clone http://somerepohere.git
+```
+
+---
+## Work from WSL: Open project in WSL
+![bg center 90%](img/work_from_wsl5.png)
+
+---
+![bg center 80%](img/work_from_wsl6.png)
+
+---
+![bg center 80%](img/work_from_wsl7.png)
+
+---
+![bg center 80%](img/work_from_wsl8.png)
+
+---
+# OK we're in... and now?
+* `.devcontainer` directory with
+  * `devcontainer.json` -> Definition of the devcontainer to use
+  * `Dockerfile` -> Definition of the underlying Docker container
+
+---
+# `.devcontainer/devcontainer.json`
+minimal setup:
+```json
+{
+    // Give the devcontainer a name, optional
+    "name": "TechEvent2023_A",
+    // Use a docker container and point to the Dockerfile
+    "build": {
+        "dockerfile": "Dockerfile"
+    }
+}
+```
+
+---
+# `.devcontainer/Dockerfile`
+minimal setup with gcc and cmake:
+```Dockerfile
+# Base image: Microsoft's debian image
+FROM mcr.microsoft.com/vscode/devcontainers/base:debian
+# Things are ran from a script, apt needs this to run in scripts
+ENV DEBIAN_FRONTEND=noninteractive
+# Install needed software
+RUN apt update -y && apt install -y build-essential cmake
+```
+[Microsofts images](https://hub.docker.com/_/microsoft-devcontainers-base): Alpine, Ubuntu and Debian
+<div style="font-size:70%"><i>
+... Beyond git, this image / Dockerfile includes zsh, Oh My Zsh!, a non-root vscode user with sudo access, and a set of common dependencies for development.
+</i></div>
+
+---
+![bg center 80%](img/work_from_wsl9.png)
+
+---
+![bg center 80%](img/work_from_wsl10.png)
+
+---
+# Lets add a hello world
+```C
+// main.c
+#include <stdio.h>
+int main(int argc, char ** argv){
+    printf("Hello World!\r\n");
+    return 0;
+}
+```
+```cmake
+# CMakeLists.txt
+cmake_minimum_required(VERSION 3.10)
+project(hello_world LANGUAGES C)
+add_executable(app main.c)
+```
+
+---
+# VSCode: plugins for everything
+* With cmake installed we can build from the terminal but...
+* `CMake Tools` plugin for VSCode for easy CMake build and debug functionality
+* `C/C++` and `C/C++ Extension Pack` plugins for VSCode for C/C++ autocomplete
