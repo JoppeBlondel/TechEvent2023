@@ -231,6 +231,7 @@ All depricated now and combined to
 * Peripheral Viewer (`mcu-debug.peripheral-viewer`)
 * MemoryView (`mcu-debug.memory-view`)
 * Embedded Tools (`ms-vscode.vscode-embedded-tools`)
+* Task Explorer (`spmeesseman.vscode-taskexplorer`)
 
 ---
 ![bg center 70%](img/vscode_full_debug.png)
