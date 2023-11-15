@@ -155,6 +155,9 @@ CMD /bin/bash
 ![bg center 60%](img/sch_devcontainer_vscode.png)
 
 ---
+![bg center 80%](img/dev_in_devconatiner.png)
+
+---
 # Devcontainers: an example
 ```json
 {
@@ -172,13 +175,11 @@ CMD /bin/bash
 ```
 
 ---
-![bg center 80%](img/dev_in_devconatiner.png)
-
----
 # Devcontainers and VSCode
 * Seamless: functions as local instance
 * Executes build tools, debugger and other tools from container
 * VSCode Configuration and plugins declared in the json file
+* Make sure to install the Dev Containers plugin `ms-vscode-remote.remote-containers`
 
 ---
 # The full story? Nope...

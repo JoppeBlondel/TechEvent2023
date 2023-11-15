@@ -134,7 +134,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:debian
 # Things are ran from a script, apt needs this to run in scripts
 ENV DEBIAN_FRONTEND=noninteractive
 # Install needed software
-RUN apt update -y && apt install -y build-essential cmake
+RUN apt update -y && apt install -y build-essential cmake gdb
 ```
 [Microsofts images](https://hub.docker.com/_/microsoft-devcontainers-base): Alpine, Ubuntu and Debian
 <div style="font-size:70%"><i>
@@ -169,3 +169,71 @@ add_executable(app main.c)
 * With cmake installed we can build from the terminal but...
 * `CMake Tools` plugin for VSCode for easy CMake build and debug functionality
 * `C/C++` and `C/C++ Extension Pack` plugins for VSCode for C/C++ autocomplete
+
+---
+# Add them to the devcontainer
+add the following to `devcontainer.json`:
+```json
+"customizations": {
+    "vscode": {
+        "extensions": [
+            "ms-vscode.cpptools",
+            "ms-vscode.cpptools-extension-pack",
+            "ms-vscode.cmake-tools"
+        ]
+    }
+}
+```
+---
+![bg center 80%](img/work_from_wsl11.png)
+
+---
+![bg center 80%](img/work_from_wsl12.png)
+
+---
+# This is not embedded yet right?
+* Just linux gcc
+* Native executable debugging
+* Things we miss
+  * USB
+  * USB <-> C debugging
+  * C Debugger which is embedded aware
+  * Maybe some nice embedded specific features in VSCode
+
+---
+# USB
+See [readme](https://github.com/JoppeBlondel/TechEvent2023) in TechEvent repo
+*note: When using Ubuntu as WSL distro udev is already running*
+
+---
+# USB <-> C debugging
+* Piece of software connecting to the physical debugger
+* Implementing a GDB server which can set breakpoints, single step, etc
+* Examples:
+  * **openocd**
+  * pyocd
+  * black magic probe
+  * (j)linkserver
+
+---
+# C Debugger which is embedded aware
+* arm-none-eabi-gdb
+* riscv-gdb
+* ....
+
+All depricated now and combined to
+**gdb-multiarch**
+
+---
+# Nice embedded specific features
+* cortex-debug (`marus25.cortex-debug`)
+* device packages (`marus25.cortex-debug-dp-xxxx`)
+* Peripheral Viewer (`mcu-debug.peripheral-viewer`)
+* MemoryView (`mcu-debug.memory-view`)
+* Embedded Tools (`ms-vscode.vscode-embedded-tools`)
+
+---
+![bg center 70%](img/vscode_full_debug.png)
+
+---
+![bg center 70%](img/vscode_full_debug_break.png)
