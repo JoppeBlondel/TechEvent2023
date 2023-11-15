@@ -4,7 +4,7 @@ author: Joppe Blondel
 paginate: true
 title: TechEvent1
 size: 16:9
-footer: Engineero Embedded Tech Event 2023 - How-to and some notes
+footer: Engineero Embedded Tech Event 2023 - Try-out STM32 decvontainer
 theme: gaia
 style: |
   :root {
