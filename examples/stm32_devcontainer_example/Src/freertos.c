@@ -117,10 +117,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 1);
-    osDelay(100);
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 0);
-    osDelay(100);
+    extern void cppEntry();
+    cppEntry();
   }
   /* USER CODE END StartDefaultTask */
 }

@@ -1,0 +1,16 @@
+{
+    "build": { "dockerfile" : "Dockerfile" },
+    "remoteUser": "node",
+    "customizations": {
+        "vscode": {
+            "extensions" : [
+                "dbaeumer.vscode-eslint",
+                "christian-kohler.npm-intellisense",
+                "ms-vscode.live-server",
+                "anseki.vscode-color",
+                "lihui.vs-color-picker"
+            ]
+        }
+    },
+    "forwardPorts": [ 8080 ]
+}

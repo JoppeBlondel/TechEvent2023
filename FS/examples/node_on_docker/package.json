@@ -1,0 +1,16 @@
+{
+  "name": "node_on_docker",
+  "version": "1.0.0",
+  "description": "nodejs in docker demo",
+  "author": "Joppe Blondel <joppe.blondel@engineero.nl",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
